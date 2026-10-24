@@ -1,0 +1,33 @@
+{
+  "name": "luna-lost-and-found",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "LUNA - Lost & Found Network (campus DBMS project): React + Vite client, Express + SQLite server",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev:server": "npm run dev --workspace server",
+    "dev:client": "npm run dev --workspace client",
+    "start": "npm run start --workspace server",
+    "build": "npm run build --workspace client",
+    "migrate": "npm run migrate --workspace server",
+    "migrate:status": "npm run migrate:status --workspace server",
+    "seed": "node scripts/seed.js",
+    "create-admin": "node scripts/create-admin.js",
+    "backup": "node scripts/backup.js",
+    "restore": "node scripts/restore.js",
+    "test": "npm run test:server && npm run test:client:unit && npm run test:client",
+    "test:server": "node --test --test-concurrency=1 \"server/tests/*.test.js\"",
+    "test:client:unit": "node --test \"client/tests/unit/*.test.js\"",
+    "test:client": "npm run test --workspace client",
+    "test:e2e": "npm run test:e2e --workspace client",
+    "explain": "node scripts/explain.js",
+    "docs:generate": "node scripts/gen-docs.js"
+  }
+}

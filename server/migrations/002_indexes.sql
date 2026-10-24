@@ -1,0 +1,25 @@
+-- Indexes for the common search, join and dashboard queries (see docs/sql-examples.sql for plans).
+CREATE INDEX idx_lost_status_date    ON lost_reports(status, last_seen_date);
+CREATE INDEX idx_lost_category       ON lost_reports(category_id);
+CREATE INDEX idx_lost_location       ON lost_reports(location_id);
+CREATE INDEX idx_lost_user           ON lost_reports(user_id);
+CREATE INDEX idx_lost_created        ON lost_reports(created_at);
+CREATE INDEX idx_found_status_date   ON found_reports(status, found_date);
+CREATE INDEX idx_found_category      ON found_reports(category_id);
+CREATE INDEX idx_found_location      ON found_reports(location_id);
+CREATE INDEX idx_found_user          ON found_reports(user_id);
+CREATE INDEX idx_found_created       ON found_reports(created_at);
+CREATE INDEX idx_claims_status       ON claims(status);
+CREATE INDEX idx_claims_claimant     ON claims(claimant_id);
+CREATE INDEX idx_claims_found        ON claims(found_report_id);
+CREATE INDEX idx_match_status        ON match_suggestions(status);
+CREATE INDEX idx_match_found         ON match_suggestions(found_report_id);
+CREATE INDEX idx_rsh_report          ON report_status_history(report_type, report_id);
+CREATE INDEX idx_rsh_created         ON report_status_history(created_at);
+CREATE INDEX idx_csh_claim           ON claim_status_history(claim_id);
+CREATE INDEX idx_notif_user_unread   ON notifications(user_id, is_read, created_at);
+CREATE INDEX idx_audit_created       ON audit_logs(created_at);
+CREATE INDEX idx_sessions_expires    ON sessions(expires_at);
+CREATE INDEX idx_login_attempts      ON login_attempts(email, created_at);
+CREATE INDEX idx_flags_status        ON report_flags(status);
+CREATE INDEX idx_users_role          ON users(role, is_active);
